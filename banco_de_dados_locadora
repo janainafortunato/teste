@@ -1,0 +1,49 @@
+CREATE TABLE cli_cliente (
+
+cli_id_cpf INT NOT NULL AUTO_INCREMENT,
+cli_nome VARCHAR(45) NOT NULL,
+cli_email VARCHAR(45) NOT NULL,
+cli_telefone VARCHAR(45) NOT NULL,
+cli_endereco VARCHAR(45) NOT NULL,
+loc_locacao INT NOT NULL,
+CONSTRAINT PK_cli_cliente_cli_id_cpf PRIMARY KEY(cli_id_cpf)
+);
+
+CREATE TABLE loc_locacao(
+
+loc_id INT NOT NULL AUTO_INCREMENT,
+loc_data DATE,
+loc_hora TIME,
+cli_id_cpf INT NOT NULL,
+fil_id INT NOT NULL,
+CONSTRAINT PK_loc_locacao_loc_id PRIMARY KEY (loc_id),
+CONSTRAINT FK_loc_locacao_cli_cliente_cli_id_cpf FOREIGN KEY (cli_id_cpf) REFERENCES cli_cliente(cli_id_cpf),
+CONSTRAINT FK_loc_locacao_fil_filme_fil_id FOREIGN KEY (fil_id) REFERENCES fil_filme(fil_id) 
+);
+
+CREATE TABLE fil_filme(
+
+fil_id INT NOT NULL AUTO_INCREMENT,
+fil_nome VARCHAR(30) NOT NULL,
+fil_pais VARCHAR(20) NOT NULL,
+loc_locacao INT NOT NULL,
+CONSTRAINT PK_fil_filme_fil_id PRIMARY KEY (fil_id)
+);
+
+CREATE TABLE cat_categoria(
+
+cat_id INT NOT NULL AUTO_INCREMENT,
+cat_nome VARCHAR(45) NOT NULL,
+CONSTRAINT PK_cat_categoria_cat_id PRIMARY KEY (cat_id)
+);
+
+
+
+
+
+
+
+
+
+
+
